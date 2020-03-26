@@ -108,3 +108,7 @@ app.post('/search', [], (req, res) => {
         .then(Response => { return res.json({ resultCode: "20000" , status: true, msg: "success", data: Response }) })
         .catch(err => { return res.json({ status: false, msg: "ไม่สามารถทำรายการได้ในขณะนี้", errors: err }) });
 });
+
+app.get('/',function (req ,res) {
+    res.send("Api is working....");
+})
