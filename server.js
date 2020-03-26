@@ -8,6 +8,14 @@ const { check, validationResult } = require('express-validator');
 const mongoose = require('mongoose')
 
 const port = process.env.PORT || 3000;
+app.listen(port, () => { console.log('Start server at port 3000.') })
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    next();
+});
 
 // MongoDB Connect
 // const uris = "mongodb://localhost:27017/blog" ; 
@@ -29,8 +37,6 @@ const customerSchema = new mongoose.Schema({
 });
 const dbCustomer = mongoose.model('Customer', customerSchema)
 
-
-
 const setFormatDate = Moment().utcOffset(-300).format('YYYY-MM-DD');
 const Customer = mongoose.model('Customer', customerSchema);
 async function createCustomer(Data) {
@@ -49,8 +55,6 @@ async function createCustomer(Data) {
         .catch(err => res = { status: false, msg: "ผิดพลาด ไม่สามารถทำรายการได้ในขณะนี้", errors: err });
     return res
 }
-
- app.listen(3000, () => { console.log('Start server at port 3000.') })
 
 app.post('/create', [
     check('caseID').isString(),
