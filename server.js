@@ -7,6 +7,8 @@ const Moment = require('moment')
 const { check, validationResult } = require('express-validator');
 const mongoose = require('mongoose')
 
+const port = process.env.PORT || 3000;
+
 // MongoDB Connect
 // const uris = "mongodb://localhost:27017/blog" ; 
 const uris = "mongodb://heroku_nnc3s5k3:r79vmq437h44bck5063uhjcnln@ds123171.mlab.com:23171/heroku_nnc3s5k3" ;
